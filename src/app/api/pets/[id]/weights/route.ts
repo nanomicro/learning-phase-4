@@ -6,6 +6,8 @@ import prisma from '../../../../../../lib/prisma'
 export async function POST(request: Request, { params }: { params: { id: string } }) {
   // get id from params
   const id = params.id
+console.log(request.json())
+
   // get data from request body
   const data = await request.json()
   // create weight record
