@@ -1,7 +1,14 @@
 @baseUrl = http://localhost:3000/api
 
+###
+
 GET {{baseUrl}}/pets HTTP/1.1
 Content-Type: application/json
+
+### search pets by name
+GET {{baseUrl}}/pets?name=ATTO HTTP/1.1
+Content-Type: application/json
+
 
 ###
 
@@ -49,10 +56,13 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
   })
   return NextResponse.json({ id: id })
 }
+
 ###
 
 DELETE {{baseUrl}}/pets/2 HTTP/1.1
 Content-Type: application/json
+
+
 ###
 
 POST {{baseUrl}}/pets/1/weights HTTP/1.1
@@ -64,3 +74,32 @@ Content-Type: application/json
     "petId": 4
   }
 }
+
+### signup
+POST {{baseUrl}}/signup HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "10.nano.9.kojima@gmail.com",
+  "password": "-NNkX5L%AwDts2W"
+}
+
+### signin
+POST {{baseUrl}}/signin HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "10.nano.9.kojima@gmail.com",
+  "password": "-NNkX5L%AwDts2W"
+}
+
+### upload image
+POST {{baseUrl}}/images HTTP/1.1
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="file"; filename="alpaca.JPG"
+Content-Type: image/jpeg
+
+< images/alpaca.JPG
+--MyBoundary--
