@@ -10,5 +10,7 @@ export async function POST(request: Request) {
     .from('learning-phase') // target bucket name
     .upload(file.name, file)
 
+  const { data, error } = await supabase.storage.from('learning-phase').list()
+
   return NextResponse.json(response)
 }
